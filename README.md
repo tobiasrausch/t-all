@@ -1,2 +1,1 @@
-# t-all
-Scripts
+# T-ALL analysis scripts
