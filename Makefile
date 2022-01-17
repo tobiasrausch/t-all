@@ -18,7 +18,7 @@ all:   	$(TARGETS)
 clean:
 	rm -f *~ rna/*~
 	rm -f rna/gene.count rna/gene.fpkm rna/sample.*.info rna/*.png rna/res.sig*.tsv
-	rm -f atac/sample.info atac/res.sig*.tsv
+	rm -f atac/sample.info atac/*.png atac/res.sig*.tsv
 
 distclean: clean
 	rm -rf $(TARGETS) $(TARGETS:=.o) conda/

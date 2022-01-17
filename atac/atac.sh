@@ -36,5 +36,14 @@ do
 done < sample.mapping.pdx
 
 # Create atac count matrix
-#/opt/dev/ATACseq/src/count.sh hg19 peaks.lst bam.lst atac.combined
+/opt/dev/ATACseq/src/count.sh hg19 peaks.lst bam.lst atac.combined
 rm -f *.bam *.bai *.peaks peaks.lst bam.lst
+
+# T-ALL type 1 and type 2
+Rscript diffATAC.R atac.combined.counts.gz sample.info all
+
+# T-ALL type 1
+Rscript diffATAC.R atac.combined.counts.gz sample.info 1
+
+# T-ALL type 2
+Rscript diffATAC.R atac.combined.counts.gz sample.info 2
