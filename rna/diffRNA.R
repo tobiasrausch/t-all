@@ -16,6 +16,12 @@ s$reltype = factor(s$reltype, levels=c(1, 2))
 geneinfo = x[,1:5]
 x = x[,6:ncol(x)]
 
+# Filter unexpressed genes
+print("Filter unexpressed genes (not absolutely necessary)")
+print(nrow(x))
+x = x[rowSums(x) >= 10,]
+print(nrow(x))
+
 # Subset if necessary
 if (atype == "1") {
  s = s[s$reltype == 1,]
@@ -29,13 +35,6 @@ if (atype == "1") {
 dds = DESeqDataSetFromMatrix(countData = x, colData = s, design = ~ patient + inirel)
 print("DESeq2 version")
 print(metadata(dds)[["version"]])
-
-# Filter unexpressed genes
-print("Filter unexpressed genes (not absolutely necessary)")
-print(nrow(counts(dds)))
-keep = rowSums(counts(dds)) >= 10
-dds = dds[keep,]
-print(nrow(counts(dds)))
 
 # Variance stabilizing transformation
 vsd = vst(dds, blind=F)
