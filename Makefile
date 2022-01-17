@@ -13,10 +13,11 @@ all:   	$(TARGETS)
 	export PATH=${PBASE}/conda/bin:${PATH} && conda install -y -n base -c conda-forge mamba && touch .mamba
 
 .diff: .conda .mamba
-	export PATH=${PBASE}/conda/bin:${PATH} && source activate base && mamba create -y -c conda-forge -c bioconda -n diff bioconductor-deseq2=1.34.0 bioconductor-vsn && touch .diff
+	export PATH=${PBASE}/conda/bin:${PATH} && source activate base && mamba create -y -c conda-forge -c bioconda -n diff bioconductor-deseq2=1.34.0 bioconductor-vsn r-ggplot2 && touch .diff
 
 clean:
-	rm -f *~
+	rm -f *~ rna/*~
+	rm -f rna/gene.count rna/gene.fpkm rna/sample.*.info
 
 distclean: clean
 	rm -rf $(TARGETS) $(TARGETS:=.o) conda/
