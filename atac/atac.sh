@@ -21,7 +21,7 @@ do
 	    PEAK=`echo ${BAM} | sed 's/.final.bam$/.peaks/'`
 	    if [ -f ${PEAK} ]
 	    then
-		IDNAME=`echo ${PEAK} | sed 's/\/[^\/]*$//' | sed 's/^.*\///' | sed "s/^${SAMPLE}/${PSEUDO}/" | sed "s/${TYPE}.*$/${TYPE}/" | sed "s/$/REP${NUM}/"`
+		IDNAME=${PSEUDO}REP${NUM}${TYPE}PDX
 		echo ${IDNAME}
 		echo -e "${IDNAME}\t${PSEUDO}\t${RELTYPE}\t${SEX}\t${FUSION}\t${TYPE}\t${PEAK}" >> sample.info
 		ln -s ${BAM} ${IDNAME}.bam
