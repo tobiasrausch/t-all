@@ -42,6 +42,7 @@ vsd = vst(dds, blind=F)
 # Plot PCA
 pcaData = plotPCA(vsd, intgroup=c("fusion", "reltype", "patient", "inirel"), returnData=TRUE)
 percentVar = round(100 * attr(pcaData, "percentVar"))
+pcaData$patient = factor(pcaData$patient, levels=c("P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10", "P11", "P12", "P27"))
 png(paste0("pca.rna.type_", atype, ".png"), width=800, height=800)
 p=ggplot(data=pcaData, aes(x = PC1, y = PC2, color=reltype, fill=patient, shape=inirel)) + geom_point(size=3, stroke=1.5)
 p=p+xlab(paste0("PC1: ", percentVar[1], "% variance"))
